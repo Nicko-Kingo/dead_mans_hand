@@ -107,4 +107,22 @@ public class Blackjack {
         handValue = 0;
         waitingOnAce = false;
     }
+
+    public bool IsTrueBlackjack()
+    {
+        List<Card> cards = hand.GetHand();
+        if (cards.Count == 2 && handValue == 21)
+        {
+            return (cards[0].GetFace() == Face.Ace &&
+                (cards[1].GetFace() != Face.Numerical ||
+                cards[1].GetFace() != Face.Ace)) || 
+                (cards[1].GetFace() == Face.Ace &&
+                (cards[0].GetFace() != Face.Numerical ||
+                cards[0].GetFace() != Face.Ace));
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
