@@ -151,9 +151,6 @@ public class PlayerBlackjack : MonoBehaviour
                 else if (blackjack.GetValue() == 21)
                 {
                     Debug.Log("Blackjack!");
-                    //yield return new WaitForSeconds(stunTime);
-                    //blackjack.ResetHand();
-                    //ResetVisibleCards();
                 }
             }
             yield return new WaitForEndOfFrame();
