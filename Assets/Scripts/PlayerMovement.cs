@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float Speed;
+    public static float Speed = 5;
     private bool isGrounded;
     public Rigidbody2D rb;
 

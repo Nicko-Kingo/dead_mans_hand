@@ -5,7 +5,10 @@ using TMPro;
 
 public class PlayerBlackjack : MonoBehaviour
 {
+
     private Blackjack blackjack;
+
+    public Camera Cam;
 
     private bool mouseDown = false;
     private bool fDown = false;
@@ -117,6 +120,9 @@ public class PlayerBlackjack : MonoBehaviour
             if (mouseDown)
             {
                 mouseDown = false;
+
+                GetComponent<Attacks>().Attack(blackjack.GetValue(), Cam.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0,0,15));
+
                 blackjack.ResetHand();
                 ResetVisibleCards();
             }
