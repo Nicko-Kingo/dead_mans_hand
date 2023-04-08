@@ -11,8 +11,15 @@ public class CameraController : MonoBehaviour
 
     public void Update()
     {
-  
-        transform.position = player.transform.position
-         + new Vector3(0, 0, -15);
+        Vector3 Player = player.transform.position;
+        Vector3 moose  = new Vector3(Input.mousePosition.x - (Screen.width/2),Input.mousePosition.y - (Screen.height/2));
+
+        Vector3 newCam = new Vector3(0,0,0);
+
+        newCam.x = moose.x + (Player.x - moose.x) / 10;
+        newCam.y = moose.y + (Player.y - moose.y) / 10;
+
+
+        transform.position = player.transform.position + (newCam / 50)         + new Vector3(0, 0, -15);
     }
 }
