@@ -35,5 +35,6 @@ public class PlayerController : MonoBehaviour
         pm.enabled = false;
         Debug.Log("Game Over!");
         OnGameOver?.Invoke();
+        GameObject.Find("Music").SetActive(false);
     }
 }

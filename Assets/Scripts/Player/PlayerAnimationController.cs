@@ -65,11 +65,14 @@ public class PlayerAnimationController : MonoBehaviour
 
     private IEnumerator GetHurt()
     {
-        beingHurt = true;
-        anim.Play("Hurt");
-        float length = anim.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSeconds(length);
-        beingHurt = false;
+        if (!beingHurt)
+        {
+            beingHurt = true;
+            anim.Play("Hurt");
+            float length = anim.GetCurrentAnimatorStateInfo(0).length;
+            yield return new WaitForSeconds(length);
+            beingHurt = false;
+        }
     }
 
     private IEnumerator Die()
