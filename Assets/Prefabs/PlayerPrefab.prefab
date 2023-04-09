@@ -2640,8 +2640,9 @@ MonoBehaviour:
   bullet: {fileID: 1703380059389667293, guid: 7728dad8f92da3d41a6124e4d287086b, type: 3}
   punch: {fileID: 8789811858207641920, guid: 777c44669c0d55a4d9d7ebd897a4f41f, type: 3}
   grenade: {fileID: 2061465824658555573, guid: 10c40779b84969747afbaff8419f255d, type: 3}
-  grenadelit: {fileID: 8723538710059906134, guid: a670845801db93d4cb1c33535051e0fe, type: 3}
-  cam: {fileID: 2819804578790131395}
+  whip: {fileID: 0}
+  laser: {fileID: 0}
+  screenWipe: {fileID: 0}
 --- !u!114 &2819804578859062748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3108,15 +3109,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7056fbd176f0d2744bd4926cb31a7169, type: 2}
+  m_sharedMaterial: {fileID: 5603115729823974306, guid: 7056fbd176f0d2744bd4926cb31a7169, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4286316364
+  m_fontColor: {r: 0.29811323, g: 1, b: 0.4806585, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
