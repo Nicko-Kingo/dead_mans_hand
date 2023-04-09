@@ -25,6 +25,7 @@ public class Whip : BasicAttack
                         ||
                         owner == "Player" && hit.collider.gameObject.tag == "Enemy")
                     {
+                        hit.collider.gameObject.GetComponent<Health>().TakeDamage(this.damage);
                         Debug.Log("Cheese");
                     }
                 }

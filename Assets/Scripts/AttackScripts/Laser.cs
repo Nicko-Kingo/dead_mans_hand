@@ -15,6 +15,7 @@ public class Laser : BasicAttack
                     owner == "Player" && hit.collider.gameObject.tag == "Enemy")
                 {
                     Debug.Log("Cheese");
+                    hit.collider.gameObject.GetComponent<Health>().TakeDamage(this.damage);
                 }
         }
 

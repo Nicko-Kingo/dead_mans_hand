@@ -22,9 +22,7 @@ public class Grenade : BasicAttack
         
         foreach(RaycastHit2D hit in hits)
         {
-            if((hit.collider.gameObject.tag == tag && hit.collider.gameObject.tag == "Enemy")
-            ||
-               tag == "Player" && hit.collider.gameObject.tag == "Enemy")
+            if((hit.collider.gameObject.tag.Equals("Enemy") || hit.collider.gameObject.tag.Equals("Player")) && !owner.Equals(hit.collider.gameObject.tag))
             {
                 hit.collider.gameObject.GetComponent<Health>().TakeDamage(this.damage);
                 Debug.Log("HHEHEHEHEHHEHEHEHBHEBEBHHEHEHEHEHEHEHHEHE");
@@ -44,7 +42,7 @@ public class Grenade : BasicAttack
             GameObject childGrenade = Instantiate(grenadelit, this.gameObject.transform.position, Quaternion.identity);
             LeanTween.move(childGrenade, this.gameObject.transform.position + (new Vector3(2 + Mathf.Cos(144 * i * i), 2 + Mathf.Sin(144 * i * i), 0)), 1f ).setOnComplete(() => {
                 //make a child grenade dealy here
-                
+                childGrenade.GetComponentInChildren<BabyGrenade>().explode();
                 Destroy(childGrenade);
             });
         }
