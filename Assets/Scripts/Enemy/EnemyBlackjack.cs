@@ -9,10 +9,12 @@ public class EnemyBlackjack : MonoBehaviour
     public float attackChance = .5f;
 
     public float stunTime = 2f;
+    private GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         blackjack = new Blackjack();
         StartCoroutine(BlackjackRoutine());
     }
@@ -26,12 +28,12 @@ public class EnemyBlackjack : MonoBehaviour
             if ((attack || blackjack.GetValue() == 21) && !blackjack.IsBusted())
             {
                 EnemyController ec = GetComponent<EnemyController>();
-                ec.TempAttack(blackjack.GetValue(), Vector2.zero);
+                ec.Attack(blackjack.GetValue(), player.transform.position, blackjack.IsTrueBlackjack());
 
                 //GameObject player = GameObject.Find("PlayerPrefab");
 
-                GetComponent<Attacks>().Attack
-                (blackjack.GetValue(), new Vector3(Screen.width / 2, Screen.height / 2, 0) + new Vector3(0,0,15), "Enemy", blackjack.IsTrueBlackjack());
+                // GetComponent<Attacks>().Attack
+                // (blackjack.GetValue(), player.transform.position, "Enemy", blackjack.IsTrueBlackjack());
 
                 yield return new WaitUntil(() => ec.PlayAgain());
                 blackjack.ResetHand();

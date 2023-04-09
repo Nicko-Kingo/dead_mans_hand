@@ -59,13 +59,21 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    public void TempAttack(int bjNum, Vector3 direction)
+    public void Attack(int bjNum, Vector3 direction, bool trueBlackjack)
     {
-        StartCoroutine(GetInRange());
+        if ((bjNum <= 15 && bjNum >= 11) || bjNum <= 5)
+        {
+            StartCoroutine(GetInRange(bjNum, direction, trueBlackjack));
+        }
+        else
+        {
+            GetComponent<Attacks>().Attack(bjNum, player.transform.position, "Enemy", trueBlackjack);
+            playAgain = true;
+        }
     }
 
 
-    public IEnumerator GetInRange()
+    public IEnumerator GetInRange(int bjNum, Vector3 direction, bool trueBlackjack)
     {
         hoverDistance = attackDistance;
         yield return new WaitForSeconds(.5f);
@@ -76,6 +84,7 @@ public class EnemyController : MonoBehaviour
         //Do some attack
         Debug.Log("Attacking");
         yield return new WaitForSeconds(1f);
+        GetComponent<Attacks>().Attack(bjNum, player.transform.position, "Enemy", trueBlackjack);
         hoverDistance = defaultHoverDistance;
         playAgain = true;
     }
@@ -88,5 +97,15 @@ public class EnemyController : MonoBehaviour
             return true;
         }
         return playAgain;
+    }
+
+    public void StartDeath()
+    {
+        Destroy(this.gameObject);
+    }
+
+    public void GotHurt()
+    {
+
     }
 }

@@ -24,13 +24,13 @@ public class Attacks : MonoBehaviour
             //punch that only moves a short distance;
             //Change this to instantiating a short punch
 
-            GameObject obj = Instantiate(punch, this.transform.position + (direction - this.transform.position).normalized * .5f, Quaternion.identity);
-            obj.GetComponent<Projectiles>().owner = tag;
+            GameObject obj = Instantiate(punch, this.transform.position + (direction - this.transform.position).normalized * 1f, Quaternion.identity);
+            obj.GetComponentInChildren<BasicAttack>().SetOwner(tag);
 
             //rotating object
-            obj.transform.eulerAngles = new Vector3(obj.transform.eulerAngles.x, obj.transform.eulerAngles.y, Vector3.Angle(direction, this.transform.position));
-            LeanTween.move(obj,this.transform.position + (direction - this.transform.position).normalized * 1f,.2f).setEaseInOutSine().setOnComplete(() => {
-                
+            //obj.transform.RotateAround()
+            obj.transform.eulerAngles = new Vector3(obj.transform.eulerAngles.x, obj.transform.eulerAngles.y, -Vector2.SignedAngle(direction - this.transform.position, Vector3.up));
+            LeanTween.move(obj, obj.transform.position + (direction - this.transform.position).normalized * 1f,.2f).setEaseInOutSine().setOnComplete(() => {
                 Destroy(obj);
             });
 

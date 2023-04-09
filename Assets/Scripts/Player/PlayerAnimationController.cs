@@ -21,7 +21,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (beingHurt) return;
         Vector3 vel = rb.velocity;
@@ -42,7 +42,7 @@ public class PlayerAnimationController : MonoBehaviour
             playerSprite.flipX = true;
         }
 
-        // Temp stuff
+/*         // Temp stuff
         if (Input.GetKeyDown(KeyCode.Z)) // Temp hurt key
         {
             StartCoroutine(GetHurt());
@@ -50,7 +50,17 @@ public class PlayerAnimationController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.X)) // Temp die key
         {
             StartCoroutine(Die());
-        }
+        } */
+    }
+
+    public void PlayGetHurt()
+    {
+        StartCoroutine(GetHurt());
+    }
+
+    public void PlayDeath()
+    {
+        StartCoroutine(Die());
     }
 
     private IEnumerator GetHurt()
