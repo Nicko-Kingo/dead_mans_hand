@@ -28,7 +28,7 @@ public class EnemyBlackjack : MonoBehaviour
                 EnemyController ec = GetComponent<EnemyController>();
                 ec.TempAttack(blackjack.GetValue(), Vector2.zero);
 
-                GameObject player = GameObject.Find("PlayerPrefab");
+                //GameObject player = GameObject.Find("PlayerPrefab");
 
                 GetComponent<Attacks>().Attack
                 (blackjack.GetValue(), new Vector3(Screen.width / 2, Screen.height / 2, 0) + new Vector3(0,0,15), "Enemy", blackjack.IsTrueBlackjack());
