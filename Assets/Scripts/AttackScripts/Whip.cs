@@ -7,8 +7,6 @@ public class Whip : BasicAttack
     
     public void attack(Vector3 direction)
     {
-        
-        Debug.Log("Whip");
 
         RaycastHit2D[] hits = Physics2D.CircleCastAll(this.transform.position + (direction - this.transform.position).normalized * .5f, 2, new Vector3(0,0,0));
             //Play the animation here
@@ -37,7 +35,7 @@ public class Whip : BasicAttack
 
     private IEnumerator whip()
     {
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(0.45f);
         Destroy(this.gameObject);
     }
 }

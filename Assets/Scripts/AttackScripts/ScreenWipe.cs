@@ -12,9 +12,14 @@ public class ScreenWipe : BasicAttack
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(owner.Equals("Player") && col.gameObject.tag.Equals("Enemy"))
+        Debug.Log(
+        "Here"
+        );
+        if(owner.Equals("Player") 
+        && col.transform.gameObject.tag.Equals("Enemy"))
         {
-            Destroy(col.transform.parent.gameObject); //??????
+            Debug.Log("THE INDIVIDUAL SHOULD BE DEAD");
+            Destroy(col.gameObject); //??????
         }
     }
 

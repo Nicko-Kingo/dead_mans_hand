@@ -21,8 +21,6 @@ public class Attacks : MonoBehaviour
         if(handValue <= 0 || handValue > 21) return;
         else if(handValue <= 5)
         {
-            
-
             //punch that only moves a short distance;
             //Change this to instantiating a short punch
             direction.z = 0f;
@@ -73,14 +71,18 @@ public class Attacks : MonoBehaviour
                 StartCoroutine(newGrenade.GetComponentInChildren<Grenade>().ClusterBomb());
             });
         }
+        /*
         else if(handValue == 21 && !isBlackjack)
         {
             GameObject newLaser = Instantiate(laser, this.transform.position + (direction - this.transform.position).normalized * 1f, Quaternion.identity);
             newLaser.GetComponentInChildren<BasicAttack>().SetOwner(tag);
             newLaser.GetComponentInChildren<Laser>().Shoot(direction);
         }
-        else if(isBlackjack)
+        */
+        else if(handValue == 21 || isBlackjack)
         {
+            Debug.Log("BlackJack");
+            
             //Only player gets blackjack cause I said so
             if(tag.Equals("Enemy")) Destroy(this.gameObject);
             
@@ -88,6 +90,7 @@ public class Attacks : MonoBehaviour
             if(tag.Equals("Player"))
             {
                 GameObject newScreenWipe = Instantiate(screenWipe, this.transform.position, Quaternion.identity);
+                newScreenWipe.GetComponentInChildren<BasicAttack>().SetOwner(tag);
             }
         }
 

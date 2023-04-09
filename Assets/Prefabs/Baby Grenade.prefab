@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 126210300735856613}
   - component: {fileID: 8561945212747458182}
   - component: {fileID: -8615883124894024691}
+  - component: {fileID: 2281821066507467228}
   m_Layer: 0
   m_Name: Baby Grenade
   m_TagString: Untagged
@@ -111,3 +112,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.07, y: 0.07}
   m_EdgeRadius: 0
+--- !u!114 &2281821066507467228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8723538710059906134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 130ff30aa5686584882ae3d27fd33041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1.5

@@ -5,23 +5,20 @@ using UnityEngine;
 public class BabyGrenade : BasicAttack
 {
     
-    
 
-    public IEnumerator explode()
+
+    public void explode()
     {
-        yield return new WaitForSecondsRealtime(.5f);
-
         RaycastHit2D[] hits = Physics2D.CircleCastAll(this.gameObject.transform.position,1, new Vector3(0,0,0)); //Should only detect enemies
         
         foreach(RaycastHit2D hit in hits)
         {
-            if((hit.collider.gameObject.tag == tag && hit.collider.gameObject.tag == "Enemy")
-            ||
-               tag == "Player" && hit.collider.gameObject.tag == "Enemy")
+            if((hit.collider.gameObject.tag.Equals("Enemy") || hit.collider.gameObject.tag.Equals("Player")) && !owner.Equals(hit.collider.gameObject.tag))
             {
                 hit.collider.gameObject.GetComponent<Health>().TakeDamage(this.damage);
-                Debug.Log("HeHeHeHA!");
+                Debug.Log("HeHeHeHa!");
             }
         }
+        Destroy(this.gameObject);
     }
 }

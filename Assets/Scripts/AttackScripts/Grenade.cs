@@ -7,6 +7,8 @@ public class Grenade : BasicAttack
 
     public GameObject grenadelit;
 
+    private bool exploded = false;
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if ((col.gameObject.tag.Equals("Enemy") || col.gameObject.tag.Equals("Player")) && !owner.Equals(col.gameObject.tag))
@@ -18,6 +20,7 @@ public class Grenade : BasicAttack
 
     public void explosion()
     {
+        exploded = true;
         RaycastHit2D[] hits = Physics2D.CircleCastAll(this.gameObject.transform.position,2, new Vector3(0,0,0)); //Should only detect enemies
         
         foreach(RaycastHit2D hit in hits)
@@ -30,20 +33,15 @@ public class Grenade : BasicAttack
         }
 
 
-        //this.gameObject.SetActive(false); //make it dissapear;
+        this.gameObject.SetActive(false); //make it dissapear;
 
         //instantiate 5 smaller grenades in a pattern around it
         for(int i = 0; i < 5; i++)
         {
-
-            //do some stupid ass trigonometry here
-            //72 degrees around
-
             GameObject childGrenade = Instantiate(grenadelit, this.gameObject.transform.position, Quaternion.identity);
-            LeanTween.move(childGrenade, this.gameObject.transform.position + (new Vector3(2 + Mathf.Cos(144 * i * i), 2 + Mathf.Sin(144 * i * i), 0)), 1f ).setOnComplete(() => {
+            LeanTween.move(childGrenade, this.gameObject.transform.position + (new Vector3(Mathf.Cos(288 * i), Mathf.Sin(288 * i), 0)), 1f ).setOnComplete(() => {
                 //make a child grenade dealy here
                 childGrenade.GetComponentInChildren<BabyGrenade>().explode();
-                Destroy(childGrenade);
             });
         }
 
@@ -52,9 +50,10 @@ public class Grenade : BasicAttack
 
     public IEnumerator ClusterBomb()
     {
+        if(exploded) StopCoroutine(ClusterBomb());
         yield return new WaitForSecondsRealtime(2.0f);
         
         
-        explosion();
+        this.explosion();
     }
 }

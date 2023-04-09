@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasicAttack : MonoBehaviour
 {
-    [SerializeField] protected int damage;
+    [SerializeField] protected float damage;
     protected string owner;
     
     public void SetOwner(string newOwner)

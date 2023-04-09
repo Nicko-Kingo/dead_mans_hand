@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac7abb18b982c241983d814f21b864e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 5
   grenadelit: {fileID: 8723538710059906134, guid: a670845801db93d4cb1c33535051e0fe, type: 3}
 --- !u!212 &6408422705119623671
 SpriteRenderer:
