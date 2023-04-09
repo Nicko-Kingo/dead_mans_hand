@@ -41,7 +41,9 @@ public class Attacks : MonoBehaviour
         {
             GameObject newBullet = Instantiate(bullet, this.transform.position, Quaternion.identity);
             newBullet.GetComponent<Projectiles>().owner = tag;
-            LeanTween.move(newBullet, direction, .5f);
+            LeanTween.move(newBullet, direction, .4f).setOnComplete(() => {
+                Destroy(newBullet);
+            });
 
             //Note, use onComplete to do other stuff
         }
@@ -72,6 +74,7 @@ public class Attacks : MonoBehaviour
         else if(handValue <= 20)
         {
             GameObject newGrenade = Instantiate(grenade, this.transform.position, Quaternion.identity);
+            newGrenade.GetComponent<Projectiles>().owner = tag;
             LeanTween.move(newGrenade, direction, 0.5f).setEaseInOutSine().setOnComplete(() => 
             {
                 StartCoroutine(ClusterBomb(newGrenade, tag));

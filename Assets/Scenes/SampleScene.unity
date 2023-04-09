@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 43198075}
   - component: {fileID: 43198076}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -673,6 +673,7 @@ GameObject:
   - component: {fileID: 628990082}
   - component: {fileID: 628990081}
   - component: {fileID: 628990080}
+  - component: {fileID: 628990083}
   m_Layer: 6
   m_Name: Isometric Diamond
   m_TagString: Enemy
@@ -690,7 +691,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -773,6 +774,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &628990083
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628990079}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1649568262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,7 +1063,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1152,7 +1174,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1325,9 +1347,9 @@ GameObject:
   - component: {fileID: 2112392612}
   - component: {fileID: 2112392613}
   - component: {fileID: 2112392614}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1358,7 +1380,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1442,4 +1464,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1703380059389667293, guid: 7728dad8f92da3d41a6124e4d287086b, type: 3}
   punch: {fileID: 8789811858207641920, guid: 777c44669c0d55a4d9d7ebd897a4f41f, type: 3}
+  grenade: {fileID: 2061465824658555573, guid: 10c40779b84969747afbaff8419f255d, type: 3}
+  grenadelit: {fileID: 8723538710059906134, guid: a670845801db93d4cb1c33535051e0fe, type: 3}
   cam: {fileID: 519420031}

@@ -42,10 +42,10 @@ public class Projectiles : MonoBehaviour
                     //do blackjack attack
                     break;
             }
-
+            Destroy(this.gameObject);
         }
         
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 
 
