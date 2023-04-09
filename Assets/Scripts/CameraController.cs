@@ -20,6 +20,6 @@ public class CameraController : MonoBehaviour
         newCam.y = moose.y + (Player.y - moose.y) / 10;
 
 
-        transform.position = player.transform.position + (newCam / 50)         + new Vector3(0, 0, -15);
+        transform.position = player.transform.position + (newCam / 100)         + new Vector3(0, 0, -15);
     }
 }
