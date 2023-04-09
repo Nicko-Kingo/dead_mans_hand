@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : MonoBehaviour
+public class Laser : BasicAttack
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Shoot(Vector3 direction)
     {
-        
-    }
+        RaycastHit2D[] hits = Physics2D.RaycastAll(this.transform.position, direction, 20);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        foreach(RaycastHit2D hit in hits)
+        {
+            if((hit.collider.gameObject.tag == owner && hit.collider.gameObject.tag == "Enemy")
+                    ||
+                    owner == "Player" && hit.collider.gameObject.tag == "Enemy")
+                {
+                    Debug.Log("Cheese");
+                }
+        }
+
+        Destroy(this.transform.parent.gameObject);
     }
 }

@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScreenWipe : MonoBehaviour
+public class ScreenWipe : BasicAttack
 {
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
-        
+        StartCoroutine(selfDestruct());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay2D(Collider2D col)
     {
-        
+        if(owner.Equals("Player") && col.gameObject.tag.Equals("Enemy"))
+        {
+            Destroy(col.transform.parent.gameObject); //??????
+        }
+    }
+
+
+    private IEnumerator selfDestruct()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        Destroy(this.gameObject);
     }
 }

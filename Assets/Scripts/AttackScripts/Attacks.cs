@@ -9,10 +9,12 @@ public class Attacks : MonoBehaviour
     public GameObject punch;
 
     public GameObject grenade;
-
-    public GameObject grenadelit;
     
-    public Camera cam;
+    public GameObject whip;
+    
+    public GameObject laser;
+
+    public GameObject screenWipe;
 
     public void Attack(int handValue, Vector3 direction, string tag, bool isBlackjack)
     {
@@ -23,7 +25,7 @@ public class Attacks : MonoBehaviour
 
             //punch that only moves a short distance;
             //Change this to instantiating a short punch
-
+            direction.z = 0f;
             GameObject obj = Instantiate(punch, this.transform.position + (direction - this.transform.position).normalized * 1f, Quaternion.identity);
             obj.GetComponentInChildren<BasicAttack>().SetOwner(tag);
 
@@ -49,86 +51,50 @@ public class Attacks : MonoBehaviour
         }
         else if(handValue <= 15)
         {
-            //Some kind of whip attack
-            //Modify the 2nd to last number to change the size of the attack
-            RaycastHit2D[] hits = Physics2D.CircleCastAll(this.transform.position + (direction - this.transform.position).normalized * .5f, 2, new Vector3(0,0,0));
-            //Play the animation here
+            //instantiate a whiparino here
+            direction.z = 0f;
+            GameObject newWhip = Instantiate(whip, this.transform.position + (direction - this.transform.position).normalized * 1f, Quaternion.identity);
+            newWhip.GetComponentInChildren<BasicAttack>().SetOwner(tag);
 
-            foreach(RaycastHit2D hit in hits) 
-            {
-                Vector3 vectorToCollider = (hit.collider.transform.position - this.transform.position).normalized;
+            //rotating object
+            //obj.transform.RotateAround()
+            newWhip.transform.eulerAngles = new Vector3(newWhip.transform.eulerAngles.x, newWhip.transform.eulerAngles.y, -Vector2.SignedAngle(direction - this.transform.position, Vector3.up));
+
+            newWhip.GetComponent<Whip>().attack(direction);
 
 
-                //Should be 180 degree arc
-                if(Vector3.Dot(vectorToCollider, (direction - this.transform.position).normalized) > 0)
-                {
-                    if((hit.collider.gameObject.tag == tag && hit.collider.gameObject.tag == "Enemy")
-                        ||
-                        tag == "Player" && hit.collider.gameObject.tag == "Enemy")
-                    {
-                        Debug.Log("Cheese");
-                    }
-                }
-            }
         }
         else if(handValue <= 20)
         {
             GameObject newGrenade = Instantiate(grenade, this.transform.position, Quaternion.identity);
-            newGrenade.GetComponent<Projectiles>().owner = tag;
-            LeanTween.move(newGrenade, direction, 0.5f).setEaseInOutSine().setOnComplete(() => 
+            newGrenade.GetComponentInChildren<BasicAttack>().SetOwner(tag);
+            LeanTween.move(newGrenade, direction + new Vector3(0,0,10), 0.5f).setEaseInOutSine().setOnComplete(() => 
             {
-                StartCoroutine(ClusterBomb(newGrenade, tag));
-                
+                StartCoroutine(newGrenade.GetComponentInChildren<Grenade>().ClusterBomb());
             });
         }
         else if(handValue == 21 && !isBlackjack)
         {
-
+            GameObject newLaser = Instantiate(laser, this.transform.position + (direction - this.transform.position).normalized * 1f, Quaternion.identity);
+            newLaser.GetComponentInChildren<BasicAttack>().SetOwner(tag);
+            newLaser.GetComponentInChildren<Laser>().Shoot(direction);
         }
         else if(isBlackjack)
         {
+            //Only player gets blackjack cause I said so
+            if(tag.Equals("Enemy")) Destroy(this.gameObject);
+            
 
-        }
-
-        
-    }
-
-    public IEnumerator ClusterBomb(GameObject grenade, string tag)
-    {
-        yield return new WaitForSecondsRealtime(1.0f);
-        
-        /*
-        //Stop doing this??
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(grenade.transform.position,2, new Vector3(0,0,0)); //Should only detect enemies
-        
-        foreach(RaycastHit2D hit in hits)
-        {
-            if((hit.collider.gameObject.tag == tag && hit.collider.gameObject.tag == "Enemy")
-            ||
-               tag == "Player" && hit.collider.gameObject.tag == "Enemy")
+            if(tag.Equals("Player"))
             {
-                Debug.Log("Cheese");
+                GameObject newScreenWipe = Instantiate(screenWipe, this.transform.position, Quaternion.identity);
             }
         }
-        */
 
-        grenade.SetActive(false); //make it dissapear;
-
-        //instantiate 5 smaller grenades in a pattern around it
-        for(int i = 0; i < 1; i++)
-        {
-
-            //do some stupid ass trigonometry here
-
-            GameObject childGrenade = Instantiate(grenadelit, grenade.transform.position, Quaternion.identity);
-            LeanTween.move(childGrenade, grenade.transform.position + new Vector3(1,0,0), 0.2f ).setOnComplete(() => {
-                Destroy(childGrenade);
-            });
-        }
-
-        Destroy(grenade);
-
+        
     }
+
+    
 
 
 
