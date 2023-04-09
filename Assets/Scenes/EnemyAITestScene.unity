@@ -2689,36 +2689,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1461042848 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2819804578859062743, guid: 2b910c01f7d2fdb4487bf441a830fe47, type: 3}
-  m_PrefabInstance: {fileID: 2819804578816780246}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1461042856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1461042848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d4bcff2144fcb049a7aeaa6ae45666c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1461042857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1461042848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc0a59003ac0a1a4bac1fa36e32b450d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 20
 --- !u!1 &1564186393
 GameObject:
   m_ObjectHideFlags: 0
@@ -2905,6 +2875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc0a59003ac0a1a4bac1fa36e32b450d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   maxHealth: 10
 --- !u!1 &1575206896
 GameObject:
@@ -4167,18 +4138,6 @@ PrefabInstance:
     - target: {fileID: 147115557478610033, guid: 2b910c01f7d2fdb4487bf441a830fe47, type: 3}
       propertyPath: m_Name
       value: PlayerPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 2819804578859062740, guid: 2b910c01f7d2fdb4487bf441a830fe47, type: 3}
-      propertyPath: m_LinearDrag
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2819804578859062740, guid: 2b910c01f7d2fdb4487bf441a830fe47, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2819804578859062743, guid: 2b910c01f7d2fdb4487bf441a830fe47, type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7435291930301727002, guid: 2b910c01f7d2fdb4487bf441a830fe47, type: 3}
       propertyPath: m_RootOrder

@@ -52,12 +52,17 @@ public class Health : MonoBehaviour
         {
             if (tag.Equals("Player"))
             {
-                pc.GotHurt();
+                pc.GotHurt(health);
             }
             else
             {
                 ec.GotHurt();
             }
         }
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
     }
 }

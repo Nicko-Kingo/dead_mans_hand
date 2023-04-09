@@ -17,7 +17,7 @@ public class Attacks : MonoBehaviour
     public void Attack(int handValue, Vector3 direction, string tag, bool isBlackjack)
     {
         if(handValue <= 0 || handValue > 21) return;
-        else if(handValue <= 5)
+        else if(handValue <= 21)
         {
             
 

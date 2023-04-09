@@ -20,6 +20,9 @@ public class PlayerBlackjack : MonoBehaviour
     public GameObject aceChoice;
     public float cardSpacing = 10f;
     public float stunTime = 2f;
+    public float cardCoolTime = 1f;
+
+    private PlayerUIController pui;
 
     //public bool stunned = false;
 
@@ -28,6 +31,7 @@ public class PlayerBlackjack : MonoBehaviour
     {
         blackjack = new Blackjack();
         uiCards = new List<GameObject>();
+        pui = GetComponent<PlayerUIController>();
         StartCoroutine(BlackjackRoutine());
     }
 
@@ -77,6 +81,7 @@ public class PlayerBlackjack : MonoBehaviour
         uiCards.Add(newCard);
         handValueText.text = blackjack.GetValue().ToString();
         SetCardPositions();
+        pui.UpdateGauge(blackjack.GetValue());
     }
 
     private void SetCardPositions()
@@ -100,6 +105,7 @@ public class PlayerBlackjack : MonoBehaviour
         }
         uiCards.Clear();
         handValueText.text = "0";
+        pui.UpdateGauge(0);
         
     }
 
@@ -147,17 +153,24 @@ public class PlayerBlackjack : MonoBehaviour
                         blackjack.CountAceHigh();
                     }
                     handValueText.text = blackjack.GetValue().ToString();
+                    pui.UpdateGauge(blackjack.GetValue());
                 }
                 Debug.Log("Hand: " + blackjack.GetValue());
                 if (blackjack.IsBusted())
                 {
                     Debug.Log("You Busted!");
+                    pui.SetCoolDown(stunTime);
                     yield return new WaitForSeconds(stunTime);
                     ResetVisibleCards();
                 }
                 else if (blackjack.GetValue() == 21)
                 {
                     Debug.Log("Blackjack!");
+                }
+                else
+                {
+                    pui.SetCoolDown(cardCoolTime);
+                    yield return new WaitForSeconds(cardCoolTime);
                 }
             }
             yield return new WaitForEndOfFrame();
