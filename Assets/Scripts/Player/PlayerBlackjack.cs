@@ -24,6 +24,10 @@ public class PlayerBlackjack : MonoBehaviour
 
     private PlayerUIController pui;
 
+    private AudioSource playerAudio;
+
+    public AudioClip[] clips;
+
     //public bool stunned = false;
 
     // Start is called before the first frame update
@@ -32,6 +36,7 @@ public class PlayerBlackjack : MonoBehaviour
         blackjack = new Blackjack();
         uiCards = new List<GameObject>();
         pui = GetComponent<PlayerUIController>();
+        playerAudio = GetComponent<AudioSource>();
         StartCoroutine(BlackjackRoutine());
     }
 
@@ -87,11 +92,17 @@ public class PlayerBlackjack : MonoBehaviour
     private void SetCardPositions()
     {
         Vector3 newPosition = Vector3.zero;
+        Vector3 newRot = Vector3.zero;
         newPosition.x = -((uiCards.Count - 1) * cardSpacing) / 2;
         for (int i = 0; i < uiCards.Count; i++)
         {
+            newRot.z = Random.Range(-30f, 30f);
             LeanTween.cancel(uiCards[i]);
             LeanTween.moveLocal(uiCards[i], newPosition, .5f).setEaseInOutSine();
+            if (i == uiCards.Count - 1)
+            {
+                LeanTween.rotate(uiCards[i], newRot, .5f);
+            }
             newPosition.x += cardSpacing;
         }
     }
@@ -138,6 +149,7 @@ public class PlayerBlackjack : MonoBehaviour
                 fDown = false;
                 blackjack.HitMe();
                 ShowCards();
+                playerAudio.PlayOneShot(clips[0]); // Draw card sfx
                 Debug.Log("You drew the " + blackjack.GetTopHandCard());
                 if (blackjack.WaitingOnAce())
                 {
@@ -159,12 +171,14 @@ public class PlayerBlackjack : MonoBehaviour
                 if (blackjack.IsBusted())
                 {
                     Debug.Log("You Busted!");
+                    playerAudio.PlayOneShot(clips[1]); //Bust sfx
                     pui.SetCoolDown(stunTime);
                     yield return new WaitForSeconds(stunTime);
                     ResetVisibleCards();
                 }
                 else if (blackjack.GetValue() == 21)
                 {
+                    playerAudio.PlayOneShot(clips[2]); //Blackjack sfx
                     Debug.Log("Blackjack!");
                 }
                 else

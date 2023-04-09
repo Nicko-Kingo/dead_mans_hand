@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private PlayerBlackjack pb;
     private PlayerMovement pm;
     private PlayerUIController pui;
+    public AudioClip hurtClip;
 
     public static event Action OnGameOver;
 
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         pac.PlayGetHurt();
         pui.UpdateHealth(newHealth);
+        GetComponent<AudioSource>().PlayOneShot(hurtClip);
     }
 
     public void GameOver()

@@ -9,7 +9,7 @@ public class Level1Win : MonoBehaviour
     {
         if (other.tag.Equals("Player"))
         {
-            SceneManager.LoadScene("WinScene");
+            SceneManager.LoadScene("Level2");
         }
     }
 }

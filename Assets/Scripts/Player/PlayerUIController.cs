@@ -33,7 +33,7 @@ public class PlayerUIController : MonoBehaviour
             // Spawn all new health this time
             for (int i = 0; i < (int)newHealth; i++)
             {
-                chips.Add(Instantiate(healthChipPrefab, healthChipStart.transform.position + Vector3.right * chipSpacing * i, Quaternion.identity));
+                chips.Add(Instantiate(healthChipPrefab, healthChipStart.transform.position + Vector3.right * chipSpacing * i * (Screen.width / 1920), Quaternion.identity));
                 chips[i].transform.SetParent(healthChipStart.transform.parent);
                 chips[i].transform.localScale = Vector3.one;
             }
