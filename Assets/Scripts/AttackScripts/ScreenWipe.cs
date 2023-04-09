@@ -10,7 +10,7 @@ public class ScreenWipe : BasicAttack
         StartCoroutine(selfDestruct());
     }
 
-    private void OnTriggerStay2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if(owner.Equals("Player") && col.gameObject.tag.Equals("Enemy"))
         {

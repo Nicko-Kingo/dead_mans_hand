@@ -19,7 +19,7 @@ public class Attacks : MonoBehaviour
     public void Attack(int handValue, Vector3 direction, string tag, bool isBlackjack)
     {
         if(handValue <= 0 || handValue > 21) return;
-        else if(handValue <= 21)
+        else if(handValue <= 5)
         {
             
 
@@ -42,7 +42,7 @@ public class Attacks : MonoBehaviour
         else if(handValue <= 10)
         {
             GameObject newBullet = Instantiate(bullet, this.transform.position, Quaternion.identity);
-            newBullet.GetComponent<Projectiles>().owner = tag;
+            newBullet.GetComponent<BasicAttack>().SetOwner(tag);
             LeanTween.move(newBullet, direction, .4f).setOnComplete(() => {
                 Destroy(newBullet);
             });

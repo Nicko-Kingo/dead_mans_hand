@@ -2640,9 +2640,9 @@ MonoBehaviour:
   bullet: {fileID: 1703380059389667293, guid: 7728dad8f92da3d41a6124e4d287086b, type: 3}
   punch: {fileID: 8789811858207641920, guid: 777c44669c0d55a4d9d7ebd897a4f41f, type: 3}
   grenade: {fileID: 2061465824658555573, guid: 10c40779b84969747afbaff8419f255d, type: 3}
-  whip: {fileID: 0}
-  laser: {fileID: 0}
-  screenWipe: {fileID: 0}
+  whip: {fileID: 1974913584803258445, guid: 6b5b2a7ee58f4b746aab8ea6fb0d1ba4, type: 3}
+  laser: {fileID: 3988578075998662486, guid: b0ad7d6e303ba2b46a67299724126948, type: 3}
+  screenWipe: {fileID: 3576933273084081778, guid: 5bc1cf5636fc7a549a97b25901c35c5e, type: 3}
 --- !u!114 &2819804578859062748
 MonoBehaviour:
   m_ObjectHideFlags: 0
