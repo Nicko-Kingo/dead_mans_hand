@@ -25,10 +25,12 @@ public class EnemyBlackjack : MonoBehaviour
             bool attack = Random.Range(0f, 1f) < attackChance && !(blackjack.GetValue() == 0);
             if ((attack || blackjack.GetValue() == 21) && !blackjack.IsBusted())
             {
-                //mouseDown = false;
+                EnemyController ec = GetComponent<EnemyController>();
+                ec.TempAttack(blackjack.GetValue(), Vector2.zero);
+                yield return new WaitUntil(() => ec.PlayAgain());
                 blackjack.ResetHand();
                 //ResetVisibleCards();
-                Debug.Log("Enemy Attacked!");
+                //Debug.Log("Enemy Attacked!");
             }
             else
             {
