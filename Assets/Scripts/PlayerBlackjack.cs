@@ -121,7 +121,8 @@ public class PlayerBlackjack : MonoBehaviour
             {
                 mouseDown = false;
 
-                GetComponent<Attacks>().Attack(blackjack.GetValue(), Cam.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0,0,15));
+                GetComponent<Attacks>().Attack
+                (blackjack.GetValue(), Cam.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0,0,15), "Player", blackjack.IsTrueBlackjack());
 
                 blackjack.ResetHand();
                 ResetVisibleCards();
