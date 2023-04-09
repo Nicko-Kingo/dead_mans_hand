@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private PlayerBlackjack pb;
     private PlayerMovement pm;
     private PlayerUIController pui;
+
+    public static event Action OnGameOver;
 
     private void Start()
     {
@@ -31,5 +34,6 @@ public class PlayerController : MonoBehaviour
         pb.enabled = false;
         pm.enabled = false;
         Debug.Log("Game Over!");
+        OnGameOver?.Invoke();
     }
 }
